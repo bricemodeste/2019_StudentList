@@ -12,17 +12,17 @@
     <nav id="buttons" class="dropdown-container">
       <div id="filtering_button">
         Filter :
-        <button id="filter_button_all" data-filter="all">All</button>
-        <button id="filter_button_Hufflepuff" data-filter="Hufflepuff">
+        <button id="filter_button_all" data-filter="all">All <span class="hog-counter"></span></button>
+        <button id="filter_button_Hufflepuff" data-filter="Hufflepuff"><span class="hog-counter"></span>
           Hufflepuff
         </button>
-        <button id="filter_button_Gryffondor" data-filter="Gryffondor">
+        <button id="filter_button_Gryffondor" data-filter="Gryffondor"><span class="hog-counter"></span>
           Gryffondor
         </button>
-        <button id="filter_button_Ravenclaw" data-filter="Ravenclaw">
+        <button id="filter_button_Ravenclaw" data-filter="Ravenclaw"><span class="hog-counter"></span>
           Ravenclaw
         </button>
-        <button id="filter_button_Slytherin" data-filter="Slytherin">
+        <button id="filter_button_Slytherin" data-filter="Slytherin"><span class="hog-counter"></span>
           Serpentard
         </button>
       </div>
@@ -45,11 +45,11 @@
     <div id="box-student">
       <template id="studentTemplate">
         <div id="design-data">
-          <h2 id="data-firstName">name</h2>
+          <h2 id="data-firstName"></h2>
           <h2 id="data-lastName"></h2>
-          <p id="data-house">house</p>
+          <p id="data-house"></p>
           <button class="popup-button">Pop me</button>
-          <button class="delete-button">Expel</button>
+          <button class="delete-button"><span class="hog-counter"></span></button>
         </div>
       </template>
     </div>
