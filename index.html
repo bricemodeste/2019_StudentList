@@ -8,8 +8,9 @@
   </head>
   <body></body>
     <h1>Welcome To Hogwarts</h1>
-
+<!---Nav sort and filter--->
     <nav id="buttons" class="dropdown-container">
+      <!---filter--->
       <div id="filtering_button">
         Filter :
         <button id="filter_button_all" data-filter="all">All 
@@ -32,6 +33,7 @@
         </button>
         <div id="expelled">Expelled Students:<span>0</span></div>
       </div>
+      <!---Modal--->
       <div id="sorting_button">
         Sort :
         <button id="sort_button_first" data-sort="firstNamestudent">
@@ -40,14 +42,25 @@
         <button id="sort_button_last" data-sort="lastNamestudent">
           Last name
         </button>
+        <button id="sort_button_house" data-sort="Housestudent">
+            House
+          </button>
     </nav>
-    <div id="modal">
-        <div class="closeModal">x</div>
-        <p class="name">Info_Name One</p>
-        <p class="lastName">Info_LastName two</p>
-        <img>
-        <p class="optional information"></p>
+  <!---Modal--->
+  <div id="modal">
+      <div id="modal-contenu">
+        <img class="portrait" src="" alt="Student-image" />
+        <div >
+            <h2 id="data-firstName"></h2>
+            <h2 id="data-lastName"></h2>
+            <p id="data-house"></p>
+        </div>
+        <div class="blood-status"></div>
+        <button class="close">X</button>
+      </div>
     </div>
+
+     <!---Template--->
     <div id="box-student">
       <template id="studentTemplate">
         <div id="design-data">

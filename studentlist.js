@@ -7,9 +7,10 @@ const Poudlard_Student = {
   firstName: "-studentFirstName-",
   middleName: "-Unknown-",
   lastName: "-studentLastName-",
-  imagename: "-studentImage-",
+  image: "-studentImage-",
   house: "-studentHouse-",
-  studentNombre: "-nb-"
+  studentNombre: "-nb-",
+  bloodstatus: "-blood-"
 };
 let arrayOfStudents = [];
 let sortArray = [];
@@ -20,6 +21,7 @@ let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
 let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
 let sortByFirstNameSlt = document.querySelector("#sort_button_first");
 let sortByLastNameSlt = document.querySelector("#sort_button_last");
+let sortHouseSlt = document.querySelector("#sort_button_house");
 
 let Countall = document.querySelector("button#filter_button_all span");
 let CountslytherinBtn = document.querySelector(
@@ -38,6 +40,7 @@ let expStudentCounter = document.querySelector("#expelled span");
 let Countstudent = 0;
 let expelledStudent = [];
 let expCount = 0;
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -65,6 +68,13 @@ function getJSON(studentList) {
     newStudent.house = showSingleStudent.house;
     newStudent.studentNombre = Countstudent++;
     arrayOfStudents.push(newStudent);
+    //img seemes to be load on the console
+    newStudent.image =
+      "images/" +
+      newStudent.lastName.toLowerCase() +
+      "_" +
+      newStudent.firstName.substring(0, 1).toLowerCase() +
+      ".png";
   });
   displayStud(arrayOfStudents);
 }
@@ -112,6 +122,8 @@ function displayStud(arraystud) {
       }
       hogData.style.display = "none";
     });
+
+    hogData.dataset.studentnb = nouveau.studentNombre;
 
     boxstudent.appendChild(copy);
     sortArray = arraystud;
