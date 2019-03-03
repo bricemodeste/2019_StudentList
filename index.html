@@ -48,7 +48,8 @@
     </nav>
   <!---Modal--->
   <div  class=" modal hide">
-      <div id="modal-content">
+      <div class="modal-content">
+          <span class="close">X</span>
         <img class="portrait" src="" alt="Student-image" />
         <div >
           <h3 class="name"></h3>
@@ -57,10 +58,10 @@
             <p id="data-house"></p>
         </div>
         <div class="blood-status"></div>
-        <button  class="close">X</button>
+        
       </div>
     </div>
-
+    
      <!---Template--->
     <div id="box-student">
       <template id="studentTemplate">
@@ -68,10 +69,13 @@
           <h2 id="data-firstName"></h2>
           <h2 id="data-lastName"></h2>
           <p id="data-house"></p>
+
+          <button class="popup-button">Pop me</button>
           
           <button id="delete-button">Expel<span class="hog-counter"></span></button>
-          <button id="popup-button">Pop me</button>
+          
         </div>
+       
       </template>
     </div>
 

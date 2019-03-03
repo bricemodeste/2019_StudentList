@@ -1,7 +1,7 @@
 "use strict";
 let boxstudent = document.querySelector("#box-student");
 const template = document.querySelector("#studentTemplate").content;
-const urlJson = "http://petlatkea.dk/2019/hogwarts/students.json";
+const urlJson = "https://petlatkea.dk/2019/hogwarts/students.json";
 const Poudlard_Student = {
   // properties
   firstName: "-studentFirstName-",
@@ -53,10 +53,11 @@ window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   console.log("init");
-  fetch("http://petlatkea.dk/2019/hogwarts/students.json")
+  fetch("https://petlatkea.dk/2019/hogwarts/students.json")
     .then(res => res.json()) // Get the response as a JSON format
     .then(getJSON); // Call the next function
   pushMyself();
+  getBloodjson();
 }
 
 function getJSON(studentList) {
@@ -84,35 +85,43 @@ function getJSON(studentList) {
       "_" +
       newStudent.firstName.substring(0, 1).toLowerCase() +
       ".png";
+    newStudent.bloodStatus = "bloodStatus";
   });
 
   displayStud(arrayOfStudents);
 }
+// Json Blood
+function getBloodjson() {
+  fetch("http://petlatkea.dk/2019/hogwarts/families.json")
+    .then(res => res.json())
+    .then(addblood);
+}
+function addblood(data) {}
 
 function displayStud(arraystud) {
   boxstudent.innerHTML = "";
-  arraystud.forEach(nouveau => {
+  arraystud.forEach(create => {
     // Declare the variable for the copy
     const copy = template.cloneNode(true);
-    console.log(nouveau);
+    console.log(create);
     //The cloneNode creates a copy of the node, and returns the clone. The cloneNode() method clones all attributes and their values.
-    copy.querySelector("#data-firstName").textContent = nouveau.firstName;
+    copy.querySelector("#data-firstName").textContent = create.firstName;
 
-    copy.querySelector("#data-lastName").textContent = nouveau.lastName;
-    copy.querySelector("#data-house").textContent = nouveau.house;
+    copy.querySelector("#data-lastName").textContent = create.lastName;
+    copy.querySelector("#data-house").textContent = create.house;
     let hogData = copy.querySelector("#design-data");
 
-    hogData.dataset.studentnb = nouveau.studentNombre;
+    hogData.dataset.studentnb = create.studentNombre;
     let expBtn = copy.querySelector("#delete-button");
-    expBtn.dataset.expelnb = nouveau.studentNombre;
+    expBtn.dataset.expelnb = create.studentNombre;
     expBtn.addEventListener("click", function() {
       // Remove
 
       for (let i = arrayOfStudents.length - 1; i >= 0; --i) {
-        if (arrayOfStudents[i].studentNombre == nouveau.studentNombre) {
+        if (arrayOfStudents[i].studentNombre == create.studentNombre) {
           arrayOfStudents.splice(i, 1);
 
-          expelledStudent.push(nouveau);
+          expelledStudent.push(create);
           Countstudent--;
           expStudentCounter.textContent = expelledStudent.length;
 
@@ -125,7 +134,7 @@ function displayStud(arraystud) {
         }
       }
       for (let i = arraystud.length - 1; i >= 0; --i) {
-        if (arraystud[i].studentNombre == nouveau.studentNombre) {
+        if (arraystud[i].studentNombre == create.studentNombre) {
           arraystud.splice(i, 1);
           console.log(arraystud);
         }
@@ -137,9 +146,11 @@ function displayStud(arraystud) {
     sortArray = arraystud;
   });
 }
+
 function pushMyself() {
   arrayOfStudents.push(newSorcerer);
 }
+
 // filtering   fixed the select to display !!! IT's WORkiiiiiiiiiiign Alleeeeluiaaa
 function filterHouse(House) {
   let houseFiltered = [];
@@ -212,3 +223,21 @@ function sortByLastName() {
 
 loadSort();
 loadFilter();
+
+//modal
+
+var modal = document.querySelector(".modal");
+var trigger = document.querySelector(".popup-button");
+var closeButton = document.querySelector(".close");
+function clickModal() {
+  modal.classList.toggle("show-modal");
+}
+function windowOnClick(event) {
+  if (event.target === modal) {
+    clickModal();
+  }
+}
+
+trigger.addEventListener("click", clickModal);
+closeButton.addEventListener("click", clickModal);
+window.addEventListener("click", windowOnClick);
