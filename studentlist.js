@@ -7,7 +7,7 @@ const Poudlard_Student = {
   firstName: "-studentFirstName-",
   middleName: "-Unknown-",
   lastName: "-studentLastName-",
-  imagename: "-studentImage-",
+  image: "-studentImage-",
   house: "-studentHouse-",
   studentNombre: "-nb-"
 };
@@ -77,7 +77,15 @@ function getJSON(studentList) {
     newStudent.house = showSingleStudent.house;
     newStudent.studentNombre = Countstudent++;
     arrayOfStudents.push(newStudent);
+    //img seemes to be load on the console
+    newStudent.image =
+      "images/" +
+      newStudent.lastName.toLowerCase() +
+      "_" +
+      newStudent.firstName.substring(0, 1).toLowerCase() +
+      ".png";
   });
+
   displayStud(arrayOfStudents);
 }
 
