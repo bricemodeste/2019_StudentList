@@ -62,6 +62,7 @@ function init() {
     .then(res => res.json()) // Get the response as a JSON format
     .then(getJSON); // Call the next function
   pushMyself();
+  getJsonBlood();
 }
 
 function getJSON(studentList) {
@@ -93,6 +94,36 @@ function getJSON(studentList) {
   });
 
   displayStud(arrayOfStudents);
+}
+
+// Umbridge to get families blood
+function getJsonBlood() {
+  fetch("https://petlatkea.dk/2019/hogwarts/families.json")
+    .then(res => res.json())
+    .then(AddBlood);
+}
+// attribute the blood not perfect need to fix it if time
+function AddBlood(data) {
+  data.half.forEach(LastName => {
+    const obj = arrayOfStudents.find(elem => elem.lastName === LastName);
+
+    if (obj) {
+      obj.bloodStatus = "Half";
+    }
+  });
+  data.pure.forEach(LastName => {
+    const obj = arrayOfStudents.find(elem => elem.lastName === LastName);
+
+    if (obj) {
+      obj.bloodStatus = "Pure";
+    }
+  });
+
+  arrayOfStudents.forEach(obj => {
+    if (!obj.bloodStatus) {
+      obj.bloodStatus = "Muggle";
+    }
+  });
 }
 
 function displayStud(arraystud) {
