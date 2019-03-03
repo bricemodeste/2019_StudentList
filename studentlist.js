@@ -2,6 +2,7 @@
 let boxstudent = document.querySelector("#box-student");
 const template = document.querySelector("#studentTemplate").content;
 const urlJson = "https://petlatkea.dk/2019/hogwarts/students.json";
+
 const Poudlard_Student = {
   // properties
   firstName: "-studentFirstName-",
@@ -24,6 +25,12 @@ let newSorcerer = {
 
 let arrayOfStudents = [];
 let sortArray = [];
+let families = [];
+let expelledStudent = [];
+
+let Countstudent = 0;
+let expCount = 0;
+
 let allFilter = document.querySelector("#filter_button_all");
 let slytherinFilter = document.querySelector("#filter_button_Slytherin");
 let gryffindorFilter = document.querySelector("#filter_button_Gryffondor");
@@ -31,7 +38,6 @@ let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
 let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
 let sortByFirstNameSlt = document.querySelector("#sort_button_first");
 let sortByLastNameSlt = document.querySelector("#sort_button_last");
-
 let Countall = document.querySelector("button#filter_button_all span");
 let CountslytherinBtn = document.querySelector(
   "button#filter_button_Slytherin span"
@@ -46,9 +52,7 @@ let CountravenclawBtn = document.querySelector(
   "button#filter_button_Ravenclaw span"
 );
 let expStudentCounter = document.querySelector("#expelled span");
-let Countstudent = 0;
-let expelledStudent = [];
-let expCount = 0;
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -57,7 +61,6 @@ function init() {
     .then(res => res.json()) // Get the response as a JSON format
     .then(getJSON); // Call the next function
   pushMyself();
-  getBloodjson();
 }
 
 function getJSON(studentList) {
@@ -85,18 +88,11 @@ function getJSON(studentList) {
       "_" +
       newStudent.firstName.substring(0, 1).toLowerCase() +
       ".png";
-    newStudent.bloodStatus = "bloodStatus";
+    newStudent.bloodStatus = "blood";
   });
 
   displayStud(arrayOfStudents);
 }
-// Json Blood
-function getBloodjson() {
-  fetch("http://petlatkea.dk/2019/hogwarts/families.json")
-    .then(res => res.json())
-    .then(addblood);
-}
-function addblood(data) {}
 
 function displayStud(arraystud) {
   boxstudent.innerHTML = "";
@@ -109,14 +105,13 @@ function displayStud(arraystud) {
 
     copy.querySelector("#data-lastName").textContent = create.lastName;
     copy.querySelector("#data-house").textContent = create.house;
+
     let hogData = copy.querySelector("#design-data");
 
     hogData.dataset.studentnb = create.studentNombre;
     let expBtn = copy.querySelector("#delete-button");
     expBtn.dataset.expelnb = create.studentNombre;
     expBtn.addEventListener("click", function() {
-      // Remove
-
       for (let i = arrayOfStudents.length - 1; i >= 0; --i) {
         if (arrayOfStudents[i].studentNombre == create.studentNombre) {
           arrayOfStudents.splice(i, 1);
@@ -223,21 +218,3 @@ function sortByLastName() {
 
 loadSort();
 loadFilter();
-
-//modal
-
-var modal = document.querySelector(".modal");
-var trigger = document.querySelector(".popup-button");
-var closeButton = document.querySelector(".close");
-function clickModal() {
-  modal.classList.toggle("show-modal");
-}
-function windowOnClick(event) {
-  if (event.target === modal) {
-    clickModal();
-  }
-}
-
-trigger.addEventListener("click", clickModal);
-closeButton.addEventListener("click", clickModal);
-window.addEventListener("click", windowOnClick);
