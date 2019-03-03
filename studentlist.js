@@ -52,6 +52,7 @@ let CountravenclawBtn = document.querySelector(
   "button#filter_button_Ravenclaw span"
 );
 let expStudentCounter = document.querySelector("#expelled span");
+let inquisitorialCounter = document.querySelector("#inquisitorial span");
 
 window.addEventListener("DOMContentLoaded", init);
 
