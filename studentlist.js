@@ -10,7 +10,7 @@ const Poudlard_Student = {
   image: "-studentImage-",
   house: "-studentHouse-",
   studentNombre: "-nb-",
-  bloodstatus: "-blood-"
+  bloodStatus: "-blood-"
 };
 let arrayOfStudents = [];
 let sortArray = [];
@@ -41,6 +41,17 @@ let Countstudent = 0;
 let expelledStudent = [];
 let expCount = 0;
 
+// add myself to the hogwart list
+
+let newSorcerer = {
+  fullName: "Brice Eddy Junior Modeste",
+  house: "Gryffindor",
+  image: "none",
+  middleName: "Eddy Junior",
+  firstName: "Brice",
+  lastName: "Modeste",
+  bloodStatus: "Muggle"
+};
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -52,6 +63,7 @@ function init() {
 
 function getJSON(studentList) {
   console.log("getJson");
+  pushMyself();
 
   // splitting
   studentList.forEach(showSingleStudent => {
@@ -76,6 +88,7 @@ function getJSON(studentList) {
       newStudent.firstName.substring(0, 1).toLowerCase() +
       ".png";
   });
+
   displayStud(arrayOfStudents);
 }
 
@@ -120,6 +133,7 @@ function displayStud(arraystud) {
           console.log(arraystud);
         }
       }
+
       hogData.style.display = "none";
     });
 
@@ -129,7 +143,9 @@ function displayStud(arraystud) {
     sortArray = arraystud;
   });
 }
-
+function pushMyself() {
+  arrayOfStudents.push(newSorcerer);
+}
 // filtering   fixed the select to display !!! IT's WORkiiiiiiiiiiign Alleeeeluiaaa
 function filterHouse(House) {
   let houseFiltered = [];
@@ -197,8 +213,10 @@ function sortByLastName() {
       return 1;
     }
   }
-  displayStud(sortArray);
 }
 
 loadSort();
 loadFilter();
+
+//MODAL
+let modal = document.querySelector(".modal");

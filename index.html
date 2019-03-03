@@ -14,21 +14,21 @@
       <div id="filtering_button">
         Filter :
         <button id="filter_button_all" data-filter="all">All 
-          <span class="hog-counter">0</span></button>
+          <span class="hog-counter"></span></button>
         <button id="filter_button_Hufflepuff" data-filter="Hufflepuff">
-          <span class="hog-counter">0</span>
+          <span class="hog-counter"></span>
           Hufflepuff
         </button>
         <button id="filter_button_Gryffondor" data-filter="Gryffondor">
-          <span class="hog-counter">0</span>
+          <span class="hog-counter"></span>
           Gryffondor
         </button>
         <button id="filter_button_Ravenclaw" data-filter="Ravenclaw">
-          <span class="hog-counter">0</span>
+          <span class="hog-counter"></span>
           Ravenclaw
         </button>
         <button id="filter_button_Slytherin" data-filter="Slytherin">
-          <span class="hog-counter">0</span>
+          <span class="hog-counter"></span>
           Serpentard
         </button>
         <div id="expelled">Expelled Students:<span>0</span></div>
@@ -47,10 +47,11 @@
           </button>
     </nav>
   <!---Modal--->
-  <div id="modal">
-      <div id="modal-contenu">
+  <div  class=" modal hide">
+      <div id="modal-content">
         <img class="portrait" src="" alt="Student-image" />
         <div >
+          <h3 class="name"></h3>
             <h2 id="data-firstName"></h2>
             <h2 id="data-lastName"></h2>
             <p id="data-house"></p>
@@ -68,8 +69,8 @@
           <h2 id="data-lastName"></h2>
           <p id="data-house"></p>
           
-          <button id="delete-button">Expel<span class="hog-counter">0</span></button>
-          <button class="popup-button">Pop me</button>
+          <button id="delete-button">Expel<span class="hog-counter"></span></button>
+          <button id="popup-button">Pop me</button>
         </div>
       </template>
     </div>
