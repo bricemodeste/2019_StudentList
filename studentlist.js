@@ -137,6 +137,7 @@ function displayStud(arraystud) {
 
     copy.querySelector("#data-lastName").textContent = create.lastName;
     copy.querySelector("#data-house").textContent = create.house;
+    copy.querySelector("#showblood").textContent = create.bloodStatus;
 
     let hogData = copy.querySelector("#design-data");
 
