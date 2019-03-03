@@ -7,11 +7,21 @@ const Poudlard_Student = {
   firstName: "-studentFirstName-",
   middleName: "-Unknown-",
   lastName: "-studentLastName-",
-  image: "-studentImage-",
+  imagename: "-studentImage-",
   house: "-studentHouse-",
-  studentNombre: "-nb-",
-  bloodStatus: "-blood-"
+  studentNombre: "-nb-"
 };
+
+let newSorcerer = {
+  fullName: "Brice Eddy Junior Modeste",
+  house: "Gryffindor",
+  image: "none",
+  middleName: "Eddy Junior",
+  firstName: "Brice",
+  lastName: "Modeste",
+  bloodStatus: "Muggle"
+};
+
 let arrayOfStudents = [];
 let sortArray = [];
 let allFilter = document.querySelector("#filter_button_all");
@@ -21,7 +31,6 @@ let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
 let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
 let sortByFirstNameSlt = document.querySelector("#sort_button_first");
 let sortByLastNameSlt = document.querySelector("#sort_button_last");
-let sortHouseSlt = document.querySelector("#sort_button_house");
 
 let Countall = document.querySelector("button#filter_button_all span");
 let CountslytherinBtn = document.querySelector(
@@ -40,18 +49,6 @@ let expStudentCounter = document.querySelector("#expelled span");
 let Countstudent = 0;
 let expelledStudent = [];
 let expCount = 0;
-
-// add myself to the hogwart list
-
-let newSorcerer = {
-  fullName: "Brice Eddy Junior Modeste",
-  house: "Gryffindor",
-  image: "none",
-  middleName: "Eddy Junior",
-  firstName: "Brice",
-  lastName: "Modeste",
-  bloodStatus: "Muggle"
-};
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -59,11 +56,11 @@ function init() {
   fetch("http://petlatkea.dk/2019/hogwarts/students.json")
     .then(res => res.json()) // Get the response as a JSON format
     .then(getJSON); // Call the next function
+  pushMyself();
 }
 
 function getJSON(studentList) {
   console.log("getJson");
-  pushMyself();
 
   // splitting
   studentList.forEach(showSingleStudent => {
@@ -80,15 +77,7 @@ function getJSON(studentList) {
     newStudent.house = showSingleStudent.house;
     newStudent.studentNombre = Countstudent++;
     arrayOfStudents.push(newStudent);
-    //img seemes to be load on the console
-    newStudent.image =
-      "images/" +
-      newStudent.lastName.toLowerCase() +
-      "_" +
-      newStudent.firstName.substring(0, 1).toLowerCase() +
-      ".png";
   });
-
   displayStud(arrayOfStudents);
 }
 
@@ -133,11 +122,8 @@ function displayStud(arraystud) {
           console.log(arraystud);
         }
       }
-
       hogData.style.display = "none";
     });
-
-    hogData.dataset.studentnb = nouveau.studentNombre;
 
     boxstudent.appendChild(copy);
     sortArray = arraystud;
@@ -213,10 +199,8 @@ function sortByLastName() {
       return 1;
     }
   }
+  displayStud(sortArray);
 }
 
 loadSort();
 loadFilter();
-
-//MODAL
-let modal = document.querySelector(".modal");
